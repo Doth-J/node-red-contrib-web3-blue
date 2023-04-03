@@ -1,0 +1,282 @@
+[
+    {
+        "id": "1555f9591c706479",
+        "type": "subflow",
+        "name": "Signatures API",
+        "info": "",
+        "category": "Web3Blue",
+        "in": [
+            {
+                "x": 80,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "c801d8f5029313eb"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1040,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "8c893abd4e25bff2",
+                        "port": 0
+                    },
+                    {
+                        "id": "74da78c8050a19f9",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#3FADB5",
+        "icon": "font-awesome/fa-users"
+    },
+    {
+        "id": "c801d8f5029313eb",
+        "type": "change",
+        "z": "1555f9591c706479",
+        "name": "FUNC // RPC // PRIVKEY",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.privateKey",
+                "pt": "msg",
+                "to": "privateKey",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.function",
+                "pt": "msg",
+                "to": "function",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.rpc",
+                "pt": "msg",
+                "to": "rpc",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 250,
+        "y": 140,
+        "wires": [
+            [
+                "74da78c8050a19f9"
+            ]
+        ]
+    },
+    {
+        "id": "cdfbd08fa06dec22",
+        "type": "accounts",
+        "z": "1555f9591c706479",
+        "name": "",
+        "function": "Sign Data",
+        "rpc": "",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 720,
+        "y": 100,
+        "wires": [
+            [
+                "8c893abd4e25bff2"
+            ]
+        ]
+    },
+    {
+        "id": "74da78c8050a19f9",
+        "type": "switch",
+        "z": "1555f9591c706479",
+        "name": "FUNC",
+        "property": "function",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "sign",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "recover",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 140,
+        "wires": [
+            [
+                "44b04d8651216b55"
+            ],
+            [
+                "a99ee36a575ab617"
+            ]
+        ]
+    },
+    {
+        "id": "a99ee36a575ab617",
+        "type": "accounts",
+        "z": "1555f9591c706479",
+        "name": "",
+        "function": "Recover Signer",
+        "rpc": "",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 640,
+        "y": 180,
+        "wires": [
+            [
+                "8c893abd4e25bff2"
+            ]
+        ]
+    },
+    {
+        "id": "8c893abd4e25bff2",
+        "type": "change",
+        "z": "1555f9591c706479",
+        "name": "CLEANUP",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "privateKey",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "44b04d8651216b55",
+        "type": "change",
+        "z": "1555f9591c706479",
+        "name": "DATA",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.data",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 100,
+        "wires": [
+            [
+                "cdfbd08fa06dec22"
+            ]
+        ]
+    },
+    {
+        "id": "4b6a91c5667dfedc",
+        "type": "inject",
+        "z": "aa86f67b81f5e566",
+        "name": "Sign Data (String)",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"function\":\"sign\",\"rpc\":\"http://localhost:8545\",\"privateKey\":\"0x8e2ed5e35383952307712768b9e0dc4316af4b4ed478ac6c10f565dd7628f9b2\",\"data\":\"Hello World\"}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 740,
+        "wires": [
+            [
+                "bd3dd53d08235a45"
+            ]
+        ]
+    },
+    {
+        "id": "0b3c8bf58c543fc7",
+        "type": "inject",
+        "z": "aa86f67b81f5e566",
+        "name": "Recover Signer",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"function\":\"recover\",\"rpc\":\"http://localhost:8545\",\"message\":\"Hello Wolrd\",\"signature\":\"0x773a74a1f4b8aa794389f5afd201cc1757c0c8656a1e36d957b43e144784cfba3ced2a5de6a3dce5d0bf5fea416ddd7535470fcac5eee467c91fd851f430081e1c\"}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 780,
+        "wires": [
+            [
+                "bd3dd53d08235a45"
+            ]
+        ]
+    },
+    {
+        "id": "bd3dd53d08235a45",
+        "type": "subflow:1555f9591c706479",
+        "z": "aa86f67b81f5e566",
+        "name": "",
+        "x": 440,
+        "y": 760,
+        "wires": [
+            [
+                "e72b113c5b979dee"
+            ]
+        ]
+    },
+    {
+        "id": "e72b113c5b979dee",
+        "type": "debug",
+        "z": "aa86f67b81f5e566",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 760,
+        "wires": []
+    }
+]

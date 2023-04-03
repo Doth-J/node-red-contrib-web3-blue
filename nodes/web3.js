@@ -101,7 +101,13 @@ module.exports = function (RED) {
                         break;
                     }
                     case "Decrypt Account": {
-                        msg.payload = yield w3.eth.accounts.decrypt(msg.payload, options.password);
+                        try {
+                            msg.payload = yield w3.eth.accounts.decrypt(msg.payload, options.password);
+                        }
+                        catch (e) {
+                            msg.reason = e;
+                            msg.payload = false;
+                        }
                         break;
                     }
                     case "Unlock Account": {
@@ -132,11 +138,11 @@ module.exports = function (RED) {
                     }
                     case "Recover Signer": {
                         const signed = msg.payload;
-                        if (signed.message && signed.signature) {
-                            msg.payload = yield w3.eth.accounts.recover(signed.message, signed.signature);
-                        }
-                        else if (signed.message && signed.v && signed.r && signed.s) {
+                        if (signed.message && signed.v && signed.r && signed.s) {
                             msg.payload = yield w3.eth.accounts.recover(signed.message, signed.v, signed.r, signed.s);
+                        }
+                        else if (signed.message && signed.signature) {
+                            msg.payload = yield w3.eth.accounts.recover(signed.message, signed.signature);
                         }
                         else {
                             msg.payload = yield w3.eth.accounts.recover(msg.payload);

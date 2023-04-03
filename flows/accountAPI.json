@@ -1,0 +1,501 @@
+[
+    {
+        "id": "94d0172948515b43",
+        "type": "subflow",
+        "name": "Account API",
+        "info": "",
+        "category": "Web3Blue",
+        "in": [
+            {
+                "x": 60,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "9e664cad883f1758"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1260,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "947c631a55a75a3b",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#3FADB5",
+        "inputLabels": [
+            "privKey / password"
+        ],
+        "icon": "font-awesome/fa-user-circle"
+    },
+    {
+        "id": "c6e4a5c58b444cda",
+        "type": "accounts",
+        "z": "94d0172948515b43",
+        "name": "",
+        "function": "Create Account",
+        "rpc": "",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 540,
+        "y": 80,
+        "wires": [
+            [
+                "e198eaad15e97663"
+            ]
+        ]
+    },
+    {
+        "id": "c746d08b0c1496a5",
+        "type": "accounts",
+        "z": "94d0172948515b43",
+        "name": "",
+        "function": "Import Account",
+        "rpc": "",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 880,
+        "y": 120,
+        "wires": [
+            [
+                "947c631a55a75a3b"
+            ]
+        ]
+    },
+    {
+        "id": "e198eaad15e97663",
+        "type": "change",
+        "z": "94d0172948515b43",
+        "name": "PRIVKEY",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.privateKey",
+                "pt": "msg",
+                "to": "privateKey",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 120,
+        "wires": [
+            [
+                "c746d08b0c1496a5"
+            ]
+        ]
+    },
+    {
+        "id": "0be8def56550591b",
+        "type": "switch",
+        "z": "94d0172948515b43",
+        "name": "FUNC",
+        "property": "payload.function",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "create",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "import",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "unlock",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "lock",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "decrypt",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 5,
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "c6e4a5c58b444cda"
+            ],
+            [
+                "e198eaad15e97663"
+            ],
+            [
+                "d9a57ae59b60107e"
+            ],
+            [
+                "9e62078ab49621e8"
+            ],
+            [
+                "68265bdfa79c68e1"
+            ]
+        ]
+    },
+    {
+        "id": "9e664cad883f1758",
+        "type": "change",
+        "z": "94d0172948515b43",
+        "name": "RPC / PASS / ACC",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.rpc",
+                "pt": "msg",
+                "to": "rpc",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.password",
+                "pt": "msg",
+                "to": "password",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.account",
+                "pt": "msg",
+                "to": "account",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 210,
+        "y": 160,
+        "wires": [
+            [
+                "0be8def56550591b"
+            ]
+        ]
+    },
+    {
+        "id": "a9af3a9064e160b7",
+        "type": "accounts",
+        "z": "94d0172948515b43",
+        "name": "",
+        "function": "Unlock Account",
+        "rpc": "",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 880,
+        "y": 160,
+        "wires": [
+            [
+                "947c631a55a75a3b"
+            ]
+        ]
+    },
+    {
+        "id": "d9a57ae59b60107e",
+        "type": "change",
+        "z": "94d0172948515b43",
+        "name": "DUR",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.duration",
+                "pt": "msg",
+                "to": "duration",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 160,
+        "wires": [
+            [
+                "a9af3a9064e160b7"
+            ]
+        ]
+    },
+    {
+        "id": "9e62078ab49621e8",
+        "type": "accounts",
+        "z": "94d0172948515b43",
+        "name": "",
+        "function": "Lock Account",
+        "rpc": "",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 870,
+        "y": 200,
+        "wires": [
+            [
+                "947c631a55a75a3b"
+            ]
+        ]
+    },
+    {
+        "id": "947c631a55a75a3b",
+        "type": "change",
+        "z": "94d0172948515b43",
+        "name": "CLEANUP",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "privateKey",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "password",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "duration",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1110,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5774a04ddaefdea6",
+        "type": "accounts",
+        "z": "94d0172948515b43",
+        "name": "",
+        "function": "Decrypt Account",
+        "rpc": "",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 880,
+        "y": 240,
+        "wires": [
+            [
+                "947c631a55a75a3b"
+            ]
+        ]
+    },
+    {
+        "id": "68265bdfa79c68e1",
+        "type": "change",
+        "z": "94d0172948515b43",
+        "name": "ACCOUNT",
+        "rules": [
+            {
+                "t": "move",
+                "p": "account",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 240,
+        "wires": [
+            [
+                "5774a04ddaefdea6"
+            ]
+        ]
+    },
+    {
+        "id": "dfd95604e7b1221e",
+        "type": "subflow:94d0172948515b43",
+        "z": "aa86f67b81f5e566",
+        "name": "",
+        "x": 470,
+        "y": 500,
+        "wires": [
+            [
+                "8645c95aa0785a99"
+            ]
+        ]
+    },
+    {
+        "id": "b32de6a1477f1d95",
+        "type": "inject",
+        "z": "aa86f67b81f5e566",
+        "name": "Create Account",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"function\":\"create\",\"rpc\":\"http://localhost:8545\",\"password\":\"Rockie\"}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 420,
+        "wires": [
+            [
+                "dfd95604e7b1221e"
+            ]
+        ]
+    },
+    {
+        "id": "8645c95aa0785a99",
+        "type": "debug",
+        "z": "aa86f67b81f5e566",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "107b90d70631e356",
+        "type": "inject",
+        "z": "aa86f67b81f5e566",
+        "name": "Decrypt Account",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"function\":\"decrypt\",\"rpc\":\"http://localhost:8545\",\"password\":\"Rockie\",\"account\":{\"version\":3,\"id\":\"376329d0-dce3-4141-93cb-08c2e48d84e4\",\"address\":\"2e112ed70e142e32669edf27f612bc1326fbcdb7\",\"crypto\":{\"ciphertext\":\"4ed04f9ad098b69df89575e4e83a65a49e817e8e8e5b92d3b5cdf1ae5d39ed95\",\"cipherparams\":{\"iv\":\"54176f7cfd9b90d42784d4fd2cc508e1\"},\"cipher\":\"aes-128-ctr\",\"kdf\":\"scrypt\",\"kdfparams\":{\"dklen\":32,\"salt\":\"62f96649b00ae738bce284ba80d545decf81668364143467381f890da6fabbf6\",\"n\":8192,\"r\":8,\"p\":1},\"mac\":\"4d543c5ece92b342bbf16252ff4e34895cdf56856c052c4d174f594a8a6a4b91\"}}}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 500,
+        "wires": [
+            [
+                "dfd95604e7b1221e"
+            ]
+        ]
+    },
+    {
+        "id": "b135935873c71a81",
+        "type": "inject",
+        "z": "aa86f67b81f5e566",
+        "name": "Import Account",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"function\":\"import\",\"rpc\":\"http://localhost:8545\",\"password\":\"Rockie\",\"privateKey\":\"0x8e2ed5e35383952307712768b9e0dc4316af4b4ed478ac6c10f565dd7628f9b2\"}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 460,
+        "wires": [
+            [
+                "dfd95604e7b1221e"
+            ]
+        ]
+    },
+    {
+        "id": "2b54068ad31c68eb",
+        "type": "inject",
+        "z": "aa86f67b81f5e566",
+        "name": "Unlock Account",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"function\":\"unlock\",\"rpc\":\"http://localhost:8545\",\"password\":\"Rockie\",\"account\":\"0x2e112ed70E142e32669edF27f612Bc1326fbCDb7\",\"duration\":1000}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 540,
+        "wires": [
+            [
+                "dfd95604e7b1221e"
+            ]
+        ]
+    },
+    {
+        "id": "ddda6c1278ca871f",
+        "type": "inject",
+        "z": "aa86f67b81f5e566",
+        "name": "Lock Account",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"function\":\"lock\",\"rpc\":\"http://localhost:8545\",\"account\":\"0x2e112ed70E142e32669edF27f612Bc1326fbCDb7\"}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 580,
+        "wires": [
+            [
+                "dfd95604e7b1221e"
+            ]
+        ]
+    }
+]
