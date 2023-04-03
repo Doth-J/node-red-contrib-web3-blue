@@ -1,0 +1,716 @@
+[
+    {
+        "id": "70b9318e1a401693",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "ACC Injector",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 560,
+        "wires": [
+            [
+                "bcbeb113953867b3"
+            ]
+        ]
+    },
+    {
+        "id": "b4b3dcc5511460f4",
+        "type": "comment",
+        "z": "dd93eebb501089eb",
+        "name": "Accounts Interaction Flows",
+        "info": "",
+        "x": 370,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "bcbeb113953867b3",
+        "type": "accounts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Create Account",
+        "rpc": "http://localhost:8085",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 400,
+        "y": 560,
+        "wires": [
+            [
+                "8f0b134e3b97d7a9"
+            ]
+        ]
+    },
+    {
+        "id": "8f0b134e3b97d7a9",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "fc32b27874b25c44",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "msg.privateKey",
+        "props": [
+            {
+                "p": "privateKey",
+                "v": "0x6d22094dbc0ac69af4aae14e92ea6b5d389c483fea86d35e54e4550352b70110",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 200,
+        "y": 620,
+        "wires": [
+            [
+                "5727a0c6f032cb6d"
+            ]
+        ]
+    },
+    {
+        "id": "5727a0c6f032cb6d",
+        "type": "accounts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Recover Account",
+        "rpc": "http://localhost:8085",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 410,
+        "y": 620,
+        "wires": [
+            [
+                "e518eed28d812d42"
+            ]
+        ]
+    },
+    {
+        "id": "e518eed28d812d42",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "e85ed74eb524be6a",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "ACC Injector",
+        "props": [
+            {
+                "p": "privateKey",
+                "v": "0x6d22094dbc0ac69af4aae14e92ea6b5d389c483fea86d35e54e4550352b70110",
+                "vt": "str"
+            },
+            {
+                "p": "password",
+                "v": "meS3cr3tPass",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 680,
+        "wires": [
+            [
+                "156f9d1430dbf00b"
+            ]
+        ]
+    },
+    {
+        "id": "156f9d1430dbf00b",
+        "type": "accounts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Import Account",
+        "rpc": "http://localhost:8085",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 400,
+        "y": 680,
+        "wires": [
+            [
+                "c63390b6d58bf6ab"
+            ]
+        ]
+    },
+    {
+        "id": "c63390b6d58bf6ab",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "ef50ce7fe21ac7f5",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "ACC Injector",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "password",
+                "v": "meS3cr3tPass",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"version\":3,\"id\":\"6093c4a8-3148-4e66-b3d3-0996a4146bc9\",\"address\":\"bbf6298c690c56264dc32566089dbea31b68f18b\",\"crypto\":{\"ciphertext\":\"8612a1df90b057c56207b090cd72300a7f9c818804e6c7e4e8a16e9b3650ea0d\",\"cipherparams\":{\"iv\":\"8abf724f5293de8e350de4c7d11cf0e3\"},\"cipher\":\"aes-128-ctr\",\"kdf\":\"scrypt\",\"kdfparams\":{\"dklen\":32,\"salt\":\"842a6ee11beb3e83548390df2e2360666094c533cb6943a9f4e5772d2f362c7f\",\"n\":8192,\"r\":8,\"p\":1},\"mac\":\"c8cf6b215807539336201e0bd7e6a68f50b43e3db21dd2a0b2d322654a1b2671\"}}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 740,
+        "wires": [
+            [
+                "7c038a3eb3b2f19c"
+            ]
+        ]
+    },
+    {
+        "id": "7c038a3eb3b2f19c",
+        "type": "accounts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Decrypt Account",
+        "rpc": "http://localhost:8085",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 400,
+        "y": 740,
+        "wires": [
+            [
+                "7cfcd27a14d58b4d"
+            ]
+        ]
+    },
+    {
+        "id": "7cfcd27a14d58b4d",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "541bf77cd592e1c4",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "ACC Injector",
+        "props": [
+            {
+                "p": "password",
+                "v": "meS3cr3tPass",
+                "vt": "str"
+            },
+            {
+                "p": "account",
+                "v": "0xBBf6298c690c56264DC32566089dBEA31b68F18B",
+                "vt": "str"
+            },
+            {
+                "p": "duration",
+                "v": "1000",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 800,
+        "wires": [
+            [
+                "b58f1f9275410e63"
+            ]
+        ]
+    },
+    {
+        "id": "b58f1f9275410e63",
+        "type": "accounts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Unlock Account",
+        "rpc": "http://localhost:8085",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 400,
+        "y": 800,
+        "wires": [
+            [
+                "ba38b36a5e7ecaeb"
+            ]
+        ]
+    },
+    {
+        "id": "ba38b36a5e7ecaeb",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "ef71af7eb383967c",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "msg.account",
+        "props": [
+            {
+                "p": "account",
+                "v": "0xBBf6298c690c56264DC32566089dBEA31b68F18B",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 860,
+        "wires": [
+            [
+                "96c7c9aa18355055"
+            ]
+        ]
+    },
+    {
+        "id": "96c7c9aa18355055",
+        "type": "accounts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Lock Account",
+        "rpc": "http://localhost:8085",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 390,
+        "y": 860,
+        "wires": [
+            [
+                "671e5ab97a747d3a"
+            ]
+        ]
+    },
+    {
+        "id": "671e5ab97a747d3a",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "fdb19c4a9d30c8f4",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "ACC Injector",
+        "props": [
+            {
+                "p": "privateKey",
+                "v": "0x6d22094dbc0ac69af4aae14e92ea6b5d389c483fea86d35e54e4550352b70110",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Signed Hello World Message",
+        "payloadType": "str",
+        "x": 190,
+        "y": 1040,
+        "wires": [
+            [
+                "4bb4632a03a7fd3b"
+            ]
+        ]
+    },
+    {
+        "id": "4bb4632a03a7fd3b",
+        "type": "accounts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Sign Data",
+        "rpc": "http://localhost:8085",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 380,
+        "y": 1040,
+        "wires": [
+            [
+                "c7fdcca2414f30ad"
+            ]
+        ]
+    },
+    {
+        "id": "c7fdcca2414f30ad",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "6cd8ecc2027cdedf",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "SigObj Injector ",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"message\":\"Signed Hello World Message\",\"messageHash\":\"0x37fa83926a2f63047d85caaf8820abf4150a1ba5fa6e8368fd259f6e12132e2d\",\"v\":\"0x1c\",\"r\":\"0x85219d0c263e590a93c43a37e3cdbaa884017b6ca9ffddc17e6d9e0940576566\",\"s\":\"0x70eed1cdeb2f2a7aff313b696b19bb9a20fdc607e4bd42daf8745105af441b58\",\"signature\":\"0x85219d0c263e590a93c43a37e3cdbaa884017b6ca9ffddc17e6d9e094057656670eed1cdeb2f2a7aff313b696b19bb9a20fdc607e4bd42daf8745105af441b581c\"}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 1100,
+        "wires": [
+            [
+                "91a7bff713d31bf5"
+            ]
+        ]
+    },
+    {
+        "id": "91a7bff713d31bf5",
+        "type": "accounts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Recover Signer",
+        "rpc": "http://localhost:8085",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 400,
+        "y": 1140,
+        "wires": [
+            [
+                "4cd8d89af731bb6b"
+            ]
+        ]
+    },
+    {
+        "id": "4cd8d89af731bb6b",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "2b5340c4dd7dfcdc",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "ACC Injector",
+        "props": [
+            {
+                "p": "privateKey",
+                "v": "0x6d22094dbc0ac69af4aae14e92ea6b5d389c483fea86d35e54e4550352b70110",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"from\":\"0x3E2a1dDC2BAf9CCcD620b9B43BC3670311A5C2a0\",\"to\":\"0xBBf6298c690c56264DC32566089dBEA31b68F18B\",\"gas\":21000,\"gasPrice\":2000000000,\"value\":1000}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 920,
+        "wires": [
+            [
+                "01fddfcc386304b1"
+            ]
+        ]
+    },
+    {
+        "id": "01fddfcc386304b1",
+        "type": "accounts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Sign Transaction",
+        "rpc": "http://localhost:8085",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 410,
+        "y": 920,
+        "wires": [
+            [
+                "6c44d4ea1c43abb0"
+            ]
+        ]
+    },
+    {
+        "id": "6c44d4ea1c43abb0",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "4b15a3f2851479ef",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "M/Sig Injector",
+        "props": [
+            {
+                "p": "payload.signature",
+                "v": "0x85219d0c263e590a93c43a37e3cdbaa884017b6ca9ffddc17e6d9e094057656670eed1cdeb2f2a7aff313b696b19bb9a20fdc607e4bd42daf8745105af441b581c",
+                "vt": "str"
+            },
+            {
+                "p": "payload.message",
+                "v": "Signed Hello World Message",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 1140,
+        "wires": [
+            [
+                "91a7bff713d31bf5"
+            ]
+        ]
+    },
+    {
+        "id": "27ce661ca0846aa4",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "M/VRS Injector",
+        "props": [
+            {
+                "p": "payload.message",
+                "v": "Signed Hello World Message",
+                "vt": "str"
+            },
+            {
+                "p": "payload.v",
+                "v": "0x1c",
+                "vt": "str"
+            },
+            {
+                "p": "payload.r",
+                "v": "0x85219d0c263e590a93c43a37e3cdbaa884017b6ca9ffddc17e6d9e0940576566",
+                "vt": "str"
+            },
+            {
+                "p": "payload.s",
+                "v": "0x70eed1cdeb2f2a7aff313b696b19bb9a20fdc607e4bd42daf8745105af441b58",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 200,
+        "y": 1180,
+        "wires": [
+            [
+                "91a7bff713d31bf5"
+            ]
+        ]
+    },
+    {
+        "id": "ea5cf60ce1cd5459",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "msg.payload",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0xf86780847735940082520894bbf6298c690c56264dc32566089dbea31b68f18b8203e880820a96a0a7682aca48264e3fceaff5f43c6999b51a11d1de4bcdf46e4037f3bcc2672f10a01cf1bfe67a2165779cc0b9dcb97b359ac59f8cc26ac4b148c7b50726e0883331",
+        "payloadType": "str",
+        "x": 190,
+        "y": 980,
+        "wires": [
+            [
+                "2eafb7949d07e4b6"
+            ]
+        ]
+    },
+    {
+        "id": "2eafb7949d07e4b6",
+        "type": "accounts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Recover Transaction",
+        "rpc": "http://localhost:8085",
+        "account": "",
+        "privateKey": "",
+        "password": "",
+        "duration": "",
+        "x": 420,
+        "y": 980,
+        "wires": [
+            [
+                "3b76b9c2ced6d013"
+            ]
+        ]
+    },
+    {
+        "id": "3b76b9c2ced6d013",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 980,
+        "wires": []
+    }
+]

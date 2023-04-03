@@ -1,0 +1,713 @@
+[
+    {
+        "id": "a7a4df0d0f842484",
+        "type": "comment",
+        "z": "dd93eebb501089eb",
+        "name": "Smart Contract nteraction Flows",
+        "info": "",
+        "x": 390,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "3df512f71dfb0443",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "CON Injector",
+        "props": [
+            {
+                "p": "account",
+                "v": "0x3E2a1dDC2BAf9CCcD620b9B43BC3670311A5C2a0",
+                "vt": "str"
+            },
+            {
+                "p": "abi",
+                "v": "[     {       \"inputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"constructor\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         }       ],       \"name\": \"NewAdmin\",       \"type\": \"event\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         },         {           \"indexed\": false,           \"internalType\": \"uint256\",           \"name\": \"deadline\",           \"type\": \"uint256\"         }       ],       \"name\": \"NewAuthorization\",       \"type\": \"event\"     },     {       \"stateMutability\": \"payable\",       \"type\": \"receive\"     },     {       \"inputs\": [],       \"name\": \"getBalance\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [],       \"name\": \"withdraw\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"newAdmin\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"newAuthorization\",       \"outputs\": [],       \"stateMutability\": \"payable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"isAuthorized\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"isAdmin\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"hasWithdrawn\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     }   ]",
+                "vt": "json"
+            },
+            {
+                "p": "bytecode",
+                "v": "0x608060405234801561001057600080fd5b5060016000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550610968806100776000396000f3fe6080604052600436106100745760003560e01c80634d3cc8421161004e5780634d3cc842146100ff5780635e2c19db1461011b578063a6ba31c114610158578063fe9fbb80146101815761007b565b806312065fe01461008057806324d7806c146100ab5780633ccfd60b146100e85761007b565b3661007b57005b600080fd5b34801561008c57600080fd5b506100956101be565b6040516100a291906106df565b60405180910390f35b3480156100b757600080fd5b506100d260048036038101906100cd919061075d565b6101c6565b6040516100df91906107a5565b60405180910390f35b3480156100f457600080fd5b506100fd61021b565b005b6101196004803603810190610114919061075d565b610333565b005b34801561012757600080fd5b50610142600480360381019061013d919061075d565b610509565b60405161014f91906106df565b60405180910390f35b34801561016457600080fd5b5061017f600480360381019061017a919061075d565b610552565b005b34801561018d57600080fd5b506101a860048036038101906101a3919061075d565b61067a565b6040516101b591906107a5565b60405180910390f35b600047905090565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff169050919050565b6000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff166102a6576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161029d9061081d565b60405180910390fd5b47600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055503373ffffffffffffffffffffffffffffffffffffffff166108fc479081150290604051600060405180830381858888f19350505050158015610330573d6000803e3d6000fd5b50565b60003411610376576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161036d906108af565b60405180910390fd5b42600260008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054106104175734600260008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600082825461040b91906108fe565b92505081905550610479565b344261042391906108fe565b600260008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600082825461047191906108fe565b925050819055505b8073ffffffffffffffffffffffffffffffffffffffff167f8dcff3be2c51d387e958e9e6dfa7a2bb4d7de33d9e3b848cde1436925d5c69bc600260008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020546040516104fe91906106df565b60405180910390a250565b6000600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b6000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff166105dd576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016105d49061081d565b60405180910390fd5b60016000808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055508073ffffffffffffffffffffffffffffffffffffffff167f71614071b88dee5e0b2ae578a9dd7b2ebbe9ae832ba419dc0242cd065a290b6c60405160405180910390a250565b600042600260008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205410159050919050565b6000819050919050565b6106d9816106c6565b82525050565b60006020820190506106f460008301846106d0565b92915050565b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b600061072a826106ff565b9050919050565b61073a8161071f565b811461074557600080fd5b50565b60008135905061075781610731565b92915050565b600060208284031215610773576107726106fa565b5b600061078184828501610748565b91505092915050565b60008115159050919050565b61079f8161078a565b82525050565b60006020820190506107ba6000830184610796565b92915050565b600082825260208201905092915050565b7f4f6e6c792061646d696e2063616e20646f207468697300000000000000000000600082015250565b60006108076016836107c0565b9150610812826107d1565b602082019050919050565b60006020820190508181036000830152610836816107fa565b9050919050565b7f5265717569726564206d73672e76616c75652067726561746572207468616e2060008201527f3000000000000000000000000000000000000000000000000000000000000000602082015250565b60006108996021836107c0565b91506108a48261083d565b604082019050919050565b600060208201905081810360008301526108c88161088c565b9050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b6000610909826106c6565b9150610914836106c6565b925082820190508082111561092c5761092b6108cf565b5b9291505056fea264697066735822122084240fb2a587ebb6e0a323007db9c8bc4c8ac955c7b8bb83d096c1df2b38489864736f6c63430008130033",
+                "vt": "str"
+            },
+            {
+                "p": "arguments",
+                "v": "[]",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 1320,
+        "wires": [
+            [
+                "822b75ab9013c14d"
+            ]
+        ]
+    },
+    {
+        "id": "822b75ab9013c14d",
+        "type": "contracts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Deploy Contract",
+        "rpc": "http://localhost:8085",
+        "abi": [],
+        "bytecode": "",
+        "arguments": [],
+        "account": "",
+        "password": "",
+        "contractAddress": "",
+        "contractFunction": "",
+        "contractArgs": [],
+        "gasLimit": "",
+        "value": "",
+        "x": 400,
+        "y": 1320,
+        "wires": [
+            [
+                "436e3aaf2749455b"
+            ]
+        ]
+    },
+    {
+        "id": "436e3aaf2749455b",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "5dbcd891531992e9",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "CON Injector",
+        "props": [
+            {
+                "p": "account",
+                "v": "0x3E2a1dDC2BAf9CCcD620b9B43BC3670311A5C2a0",
+                "vt": "str"
+            },
+            {
+                "p": "abi",
+                "v": "[     {       \"inputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"constructor\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         }       ],       \"name\": \"NewAdmin\",       \"type\": \"event\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         },         {           \"indexed\": false,           \"internalType\": \"uint256\",           \"name\": \"deadline\",           \"type\": \"uint256\"         }       ],       \"name\": \"NewAuthorization\",       \"type\": \"event\"     },     {       \"stateMutability\": \"payable\",       \"type\": \"receive\"     },     {       \"inputs\": [],       \"name\": \"getBalance\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [],       \"name\": \"withdraw\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"newAdmin\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"newAuthorization\",       \"outputs\": [],       \"stateMutability\": \"payable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"isAuthorized\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"isAdmin\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"hasWithdrawn\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     }   ]",
+                "vt": "json"
+            },
+            {
+                "p": "contractAddress",
+                "v": "0x5F995BFBDbd12Ef69a2630Ff83ca19f4113edeC2",
+                "vt": "str"
+            },
+            {
+                "p": "contractFunction",
+                "v": "isAdmin",
+                "vt": "str"
+            },
+            {
+                "p": "contractArgs",
+                "v": "[\"0x3E2a1dDC2BAf9CCcD620b9B43BC3670311A5C2a0\"]",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 1380,
+        "wires": [
+            [
+                "1016222cd5f01870"
+            ]
+        ]
+    },
+    {
+        "id": "1016222cd5f01870",
+        "type": "contracts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Call to Contract",
+        "rpc": "http://localhost:8085",
+        "abi": [],
+        "bytecode": "",
+        "arguments": [],
+        "account": "",
+        "password": "",
+        "contractAddress": "",
+        "contractFunction": "",
+        "contractArgs": [],
+        "gasLimit": "",
+        "value": "",
+        "x": 400,
+        "y": 1380,
+        "wires": [
+            [
+                "43a3c7f6a19b6acf"
+            ]
+        ]
+    },
+    {
+        "id": "43a3c7f6a19b6acf",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "8b52b9f076af473c",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "CON Injector",
+        "props": [
+            {
+                "p": "account",
+                "v": "0xed34c488ee798B6481dF91CbA0a092e1F071c20b",
+                "vt": "str"
+            },
+            {
+                "p": "abi",
+                "v": "[     {       \"inputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"constructor\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         }       ],       \"name\": \"NewAdmin\",       \"type\": \"event\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         },         {           \"indexed\": false,           \"internalType\": \"uint256\",           \"name\": \"deadline\",           \"type\": \"uint256\"         }       ],       \"name\": \"NewAuthorization\",       \"type\": \"event\"     },     {       \"stateMutability\": \"payable\",       \"type\": \"receive\"     },     {       \"inputs\": [],       \"name\": \"getBalance\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [],       \"name\": \"withdraw\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"newAdmin\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"newAuthorization\",       \"outputs\": [],       \"stateMutability\": \"payable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"isAuthorized\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"isAdmin\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"hasWithdrawn\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     }   ]",
+                "vt": "json"
+            },
+            {
+                "p": "contractAddress",
+                "v": "0x5F995BFBDbd12Ef69a2630Ff83ca19f4113edeC2",
+                "vt": "str"
+            },
+            {
+                "p": "contractFunction",
+                "v": "newAuthorization",
+                "vt": "str"
+            },
+            {
+                "p": "contractArgs",
+                "v": "[\"0xed34c488ee798B6481dF91CbA0a092e1F071c20b\"]",
+                "vt": "json"
+            },
+            {
+                "p": "gasLimit",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "p": "value",
+                "v": "1000",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 1440,
+        "wires": [
+            [
+                "bd0e4f0f0cf9c9d0"
+            ]
+        ]
+    },
+    {
+        "id": "bd0e4f0f0cf9c9d0",
+        "type": "contracts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Transaction with Contract",
+        "rpc": "http://localhost:8085",
+        "abi": [],
+        "bytecode": "",
+        "arguments": [],
+        "account": "",
+        "password": "",
+        "contractAddress": "",
+        "contractFunction": "",
+        "contractArgs": [],
+        "gasLimit": "",
+        "value": "",
+        "x": 430,
+        "y": 1440,
+        "wires": [
+            [
+                "e968100c354eee1a"
+            ]
+        ]
+    },
+    {
+        "id": "e968100c354eee1a",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "dc39c2567803ab17",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "CON Injector",
+        "props": [
+            {
+                "p": "account",
+                "v": "0x3E2a1dDC2BAf9CCcD620b9B43BC3670311A5C2a0",
+                "vt": "str"
+            },
+            {
+                "p": "abi",
+                "v": "[     {       \"inputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"constructor\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         }       ],       \"name\": \"NewAdmin\",       \"type\": \"event\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         },         {           \"indexed\": false,           \"internalType\": \"uint256\",           \"name\": \"deadline\",           \"type\": \"uint256\"         }       ],       \"name\": \"NewAuthorization\",       \"type\": \"event\"     },     {       \"stateMutability\": \"payable\",       \"type\": \"receive\"     },     {       \"inputs\": [],       \"name\": \"getBalance\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [],       \"name\": \"withdraw\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"newAdmin\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"newAuthorization\",       \"outputs\": [],       \"stateMutability\": \"payable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"isAuthorized\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"isAdmin\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"hasWithdrawn\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     }   ]",
+                "vt": "json"
+            },
+            {
+                "p": "contractAddress",
+                "v": "0x5F995BFBDbd12Ef69a2630Ff83ca19f4113edeC2",
+                "vt": "str"
+            },
+            {
+                "p": "contractFunction",
+                "v": "isAuthorized",
+                "vt": "str"
+            },
+            {
+                "p": "contractArgs",
+                "v": "[\"0xed34c488ee798B6481dF91CbA0a092e1F071c20b\"]",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 1500,
+        "wires": [
+            [
+                "d3d915a393d68b67"
+            ]
+        ]
+    },
+    {
+        "id": "d3d915a393d68b67",
+        "type": "contracts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Call to Contract",
+        "rpc": "http://localhost:8085",
+        "abi": [],
+        "bytecode": "",
+        "arguments": [],
+        "account": "",
+        "password": "",
+        "contractAddress": "",
+        "contractFunction": "",
+        "contractArgs": [],
+        "gasLimit": "",
+        "value": "",
+        "x": 400,
+        "y": 1500,
+        "wires": [
+            [
+                "f58946616b4e5fac"
+            ]
+        ]
+    },
+    {
+        "id": "f58946616b4e5fac",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "72acc91eeb2a64c3",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "CON Injector",
+        "props": [
+            {
+                "p": "account",
+                "v": "0x3E2a1dDC2BAf9CCcD620b9B43BC3670311A5C2a0",
+                "vt": "str"
+            },
+            {
+                "p": "abi",
+                "v": "[     {       \"inputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"constructor\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         }       ],       \"name\": \"NewAdmin\",       \"type\": \"event\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         },         {           \"indexed\": false,           \"internalType\": \"uint256\",           \"name\": \"deadline\",           \"type\": \"uint256\"         }       ],       \"name\": \"NewAuthorization\",       \"type\": \"event\"     },     {       \"stateMutability\": \"payable\",       \"type\": \"receive\"     },     {       \"inputs\": [],       \"name\": \"getBalance\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [],       \"name\": \"withdraw\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"newAdmin\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"newAuthorization\",       \"outputs\": [],       \"stateMutability\": \"payable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"isAuthorized\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"isAdmin\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"hasWithdrawn\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     }   ]",
+                "vt": "json"
+            },
+            {
+                "p": "contractAddress",
+                "v": "0x5F995BFBDbd12Ef69a2630Ff83ca19f4113edeC2",
+                "vt": "str"
+            },
+            {
+                "p": "contractFunction",
+                "v": "newAdmin",
+                "vt": "str"
+            },
+            {
+                "p": "contractArgs",
+                "v": "[\"0x914E60Dcc0139f66FABC34191fbC86679eb7b4EA\"]",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 1560,
+        "wires": [
+            [
+                "b4a32f2334f82b5d"
+            ]
+        ]
+    },
+    {
+        "id": "b4a32f2334f82b5d",
+        "type": "contracts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Send to Contract",
+        "rpc": "http://localhost:8085",
+        "abi": [],
+        "bytecode": "",
+        "arguments": [],
+        "account": "",
+        "password": "",
+        "contractAddress": "",
+        "contractFunction": "",
+        "contractArgs": [],
+        "gasLimit": "",
+        "value": "",
+        "x": 410,
+        "y": 1560,
+        "wires": [
+            [
+                "2bfa7644edf0dffe"
+            ]
+        ]
+    },
+    {
+        "id": "2bfa7644edf0dffe",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "39ca11a1eb051203",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "CON Injector",
+        "props": [
+            {
+                "p": "account",
+                "v": "0x914E60Dcc0139f66FABC34191fbC86679eb7b4EA",
+                "vt": "str"
+            },
+            {
+                "p": "abi",
+                "v": "[     {       \"inputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"constructor\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         }       ],       \"name\": \"NewAdmin\",       \"type\": \"event\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         },         {           \"indexed\": false,           \"internalType\": \"uint256\",           \"name\": \"deadline\",           \"type\": \"uint256\"         }       ],       \"name\": \"NewAuthorization\",       \"type\": \"event\"     },     {       \"stateMutability\": \"payable\",       \"type\": \"receive\"     },     {       \"inputs\": [],       \"name\": \"getBalance\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [],       \"name\": \"withdraw\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"newAdmin\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"newAuthorization\",       \"outputs\": [],       \"stateMutability\": \"payable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"isAuthorized\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"isAdmin\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"hasWithdrawn\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     }   ]",
+                "vt": "json"
+            },
+            {
+                "p": "contractAddress",
+                "v": "0x5F995BFBDbd12Ef69a2630Ff83ca19f4113edeC2",
+                "vt": "str"
+            },
+            {
+                "p": "contractFunction",
+                "v": "withdraw",
+                "vt": "str"
+            },
+            {
+                "p": "contractArgs",
+                "v": "[]",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 1680,
+        "wires": [
+            [
+                "87d11ba812855427"
+            ]
+        ]
+    },
+    {
+        "id": "87d11ba812855427",
+        "type": "contracts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Send to Contract",
+        "rpc": "http://localhost:8085",
+        "abi": [],
+        "bytecode": "",
+        "arguments": [],
+        "account": "",
+        "password": "",
+        "contractAddress": "",
+        "contractFunction": "",
+        "contractArgs": [],
+        "gasLimit": "",
+        "value": "",
+        "x": 410,
+        "y": 1680,
+        "wires": [
+            [
+                "21240f083ddcc12c"
+            ]
+        ]
+    },
+    {
+        "id": "21240f083ddcc12c",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "d2f2ae680ae45d46",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "CON Injector",
+        "props": [
+            {
+                "p": "account",
+                "v": "0x3E2a1dDC2BAf9CCcD620b9B43BC3670311A5C2a0",
+                "vt": "str"
+            },
+            {
+                "p": "abi",
+                "v": "[     {       \"inputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"constructor\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         }       ],       \"name\": \"NewAdmin\",       \"type\": \"event\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         },         {           \"indexed\": false,           \"internalType\": \"uint256\",           \"name\": \"deadline\",           \"type\": \"uint256\"         }       ],       \"name\": \"NewAuthorization\",       \"type\": \"event\"     },     {       \"stateMutability\": \"payable\",       \"type\": \"receive\"     },     {       \"inputs\": [],       \"name\": \"getBalance\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [],       \"name\": \"withdraw\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"newAdmin\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"newAuthorization\",       \"outputs\": [],       \"stateMutability\": \"payable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"isAuthorized\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"isAdmin\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"hasWithdrawn\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     }   ]",
+                "vt": "json"
+            },
+            {
+                "p": "contractAddress",
+                "v": "0x5F995BFBDbd12Ef69a2630Ff83ca19f4113edeC2",
+                "vt": "str"
+            },
+            {
+                "p": "contractFunction",
+                "v": "getBalance",
+                "vt": "str"
+            },
+            {
+                "p": "contractArgs",
+                "v": "[]",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 1620,
+        "wires": [
+            [
+                "28778c489de686f2"
+            ]
+        ]
+    },
+    {
+        "id": "28778c489de686f2",
+        "type": "contracts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Call to Contract",
+        "rpc": "http://localhost:8085",
+        "abi": [],
+        "bytecode": "",
+        "arguments": [],
+        "account": "",
+        "password": "",
+        "contractAddress": "",
+        "contractFunction": "",
+        "contractArgs": [],
+        "gasLimit": "",
+        "value": "",
+        "x": 400,
+        "y": 1620,
+        "wires": [
+            [
+                "d5fe7397fd5df689"
+            ]
+        ]
+    },
+    {
+        "id": "d5fe7397fd5df689",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "53fea0b833a39791",
+        "type": "inject",
+        "z": "dd93eebb501089eb",
+        "name": "CON Injector",
+        "props": [
+            {
+                "p": "account",
+                "v": "0x3E2a1dDC2BAf9CCcD620b9B43BC3670311A5C2a0",
+                "vt": "str"
+            },
+            {
+                "p": "abi",
+                "v": "[     {       \"inputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"constructor\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         }       ],       \"name\": \"NewAdmin\",       \"type\": \"event\"     },     {       \"anonymous\": false,       \"inputs\": [         {           \"indexed\": true,           \"internalType\": \"address\",           \"name\": \"\",           \"type\": \"address\"         },         {           \"indexed\": false,           \"internalType\": \"uint256\",           \"name\": \"deadline\",           \"type\": \"uint256\"         }       ],       \"name\": \"NewAuthorization\",       \"type\": \"event\"     },     {       \"stateMutability\": \"payable\",       \"type\": \"receive\"     },     {       \"inputs\": [],       \"name\": \"getBalance\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [],       \"name\": \"withdraw\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"newAdmin\",       \"outputs\": [],       \"stateMutability\": \"nonpayable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"newAuthorization\",       \"outputs\": [],       \"stateMutability\": \"payable\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_authorized\",           \"type\": \"address\"         }       ],       \"name\": \"isAuthorized\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"isAdmin\",       \"outputs\": [         {           \"internalType\": \"bool\",           \"name\": \"\",           \"type\": \"bool\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     },     {       \"inputs\": [         {           \"internalType\": \"address\",           \"name\": \"_admin\",           \"type\": \"address\"         }       ],       \"name\": \"hasWithdrawn\",       \"outputs\": [         {           \"internalType\": \"uint256\",           \"name\": \"\",           \"type\": \"uint256\"         }       ],       \"stateMutability\": \"view\",       \"type\": \"function\"     }   ]",
+                "vt": "json"
+            },
+            {
+                "p": "contractAddress",
+                "v": "0x5F995BFBDbd12Ef69a2630Ff83ca19f4113edeC2",
+                "vt": "str"
+            },
+            {
+                "p": "contractFunction",
+                "v": "hasWithdrawn",
+                "vt": "str"
+            },
+            {
+                "p": "contractArgs",
+                "v": "[\"0x914E60Dcc0139f66FABC34191fbC86679eb7b4EA\"]",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 1740,
+        "wires": [
+            [
+                "b0cecf46d17fde19"
+            ]
+        ]
+    },
+    {
+        "id": "b0cecf46d17fde19",
+        "type": "contracts",
+        "z": "dd93eebb501089eb",
+        "name": "",
+        "function": "Call to Contract",
+        "rpc": "http://localhost:8085",
+        "abi": [],
+        "bytecode": "",
+        "arguments": [],
+        "account": "",
+        "password": "",
+        "contractAddress": "",
+        "contractFunction": "",
+        "contractArgs": [],
+        "gasLimit": "",
+        "value": "",
+        "x": 400,
+        "y": 1740,
+        "wires": [
+            [
+                "988bb9cb756bd396"
+            ]
+        ]
+    },
+    {
+        "id": "988bb9cb756bd396",
+        "type": "debug",
+        "z": "dd93eebb501089eb",
+        "name": "Print Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1740,
+        "wires": []
+    }
+]

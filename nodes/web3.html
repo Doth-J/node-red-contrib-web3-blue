@@ -1,0 +1,517 @@
+<!-- RPC NODE -->
+<script type="text/javascript" id="node-rpc">
+    RED.nodes.registerType('rpc',{
+        category:'Web3Blue',
+        color:'#3FADB5',
+        inputs:1,
+        inputLabels: "rpc action",
+        outputs:1,
+        outputLabels: "rpc response",
+        icon:'rpc.svg',
+        defaults: {
+            name: {value:''},
+            function:{value:'Ganache Server'},
+            ip:{value:'127.0.0.1'},
+            port:{value:'8085'},
+            rpc:{value:''},
+            account:{value:''},
+            block:{value:''},
+        },
+        oneditprepare:()=>{
+            $("#node-input-function").typedInput({
+                type:"str",
+                types: [
+                    {
+                        options: [
+                            { value: "Ganache Server"},
+                            { value: "Get Accounts"},
+                            { value: "Balance of"},
+                            { value: "Get Block"},
+                            { value: "Get Transactions"},
+                            { value: "Send Transaction"},
+                        ]
+                    }
+                ]
+            })
+            $('#node-input-function').change(()=>{
+                $('.option').hide();
+                switch($('#node-input-function').val()){
+                    case "Ganache Server":{
+                        $('#port').show();
+                        $('#ip').show();
+                        break;
+                    }
+                    case "Get Accounts":{
+                        $('#url').show();
+                        break;
+                    }
+                    case "Balance of":{
+                        $('#url').show();
+                        $('#account').show();
+                        break;
+                    }
+                    case "Get Block":{
+                        $('#url').show();
+                        $('#block').show();
+                        break;
+                    }
+                    case "Get Transactions":{
+                        $('#url').show();
+                        $('#block').show();
+                        break;
+                    }
+                    case "Send Transaction":{
+                        $('#url').show();
+                        break;
+                    }
+                }
+            });
+            $('#node-input-port').typedInput({
+                type:"num",
+                types:["num"]
+            })
+            $('#node-input-ip').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-rpc').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-account').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-block').typedInput({
+                type:"str",
+                types:["str"]
+            })
+        },
+        paletteLabel:"RPC",
+        label: function(){
+            return this.name || this.function || 'RPC'
+        }
+    });
+</script>
+<script type="text/html" data-template-name="rpc">
+    <style>
+        .option{
+            display: none;
+        }
+        .option div{
+            min-width: 73%;
+        }
+    </style>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-function"><i class="fa fa-square"></i> Function</label>
+        <input type="text" id="node-input-function">
+    </div>
+    <div class="form-row option" id="url">
+        <label for="node-input-rpc"><i class="fa fa-server"></i> URL</label>
+        <input type="text" id="node-input-rpc">
+    </div>
+    <div class="form-row option" id="ip">
+        <label for="node-input-ip"><i class="fa fa-plug"></i> IP</label>
+        <input type="text" id="node-input-ip">
+    </div>
+    <div class="form-row option" id="port">
+        <label for="node-input-port"><i class="fa fa-plug"></i> Port</label>
+        <input type="text" id="node-input-port">
+    </div>
+    <div class="form-row option" id="account">
+        <label for="node-input-account"><i class="fa fa-user"></i> Account</label>
+        <input type="text" id="node-input-account">
+    </div>
+    <div class="form-row option" id="block">
+        <label for="node-input-block"><i class="fa fa-stop"></i> Block</label>
+        <input type="text" id="node-input-block">
+    </div>
+</script>
+<script type="text/html" data-help-name="rpc" style="display:none;">
+    <p>Ethereum RPC Node-RED node.</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">string</span>
+    </dt>
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">string</span>
+    </dt>
+    <h3>Details</h3>
+    <p>Node for connecting to an Ethereum Remote Procedure Call server.</p>
+</script>
+
+<!-- ACCOUNT NODE -->
+<script type="text/javascript" id="node-accounts">
+    RED.nodes.registerType('accounts',{
+        category:'Web3Blue',
+        color:'#3FADB5',
+        inputs:1,
+        inputLabels: "account request",
+        outputs:1,
+        outputLabels: "account response",
+        defaults: {
+            name: {value:''},
+            function:{value:'Create Account'},
+            rpc:{value:''},
+            account:{value:''},
+            privateKey:{value:''},
+            password:{value:''},
+            duration:{value:''}
+        },
+        icon:"account.svg",
+        oneditprepare: () => {
+            $("#node-input-function").typedInput({
+                type:"str",
+                types: [
+                    {
+                        options: [
+                            { value: "Create Account"},
+                            { value: "Recover Account"},
+                            { value: "Import Account"},
+                            { value: "Decrypt Account"},
+                            { value: "Unlock Account"},
+                            { value: "Lock Account"},
+                            { value: "Sign Data"},
+                            { value: "Sign Transaction"},
+                            { value: "Recover Signer"},
+                            { value: "Recover Transaction"},
+                        ]
+                    }
+                ]
+            })
+            $('#node-input-function').change(()=>{
+                $('.option').hide();
+                switch($('#node-input-function').val()){
+                    case "Recover Account":{
+                        $('#privateKey').show();
+                        break;
+                    }
+                    case "Import Account":{
+                        $('#password').show();
+                        $('#privateKey').show();
+                        break;
+                    }
+                    case "Decrypt Account":{
+                        $('#password').show();
+                        break;
+                    }
+                    case "Unlock Account":{
+                        $('#account').show();
+                        $('#password').show();
+                        $('#duration').show();
+                        break;
+                    }
+                    case "Lock Account":{
+                        $('#account').show();
+                        break;
+                    }
+                    case "Sign Data":{
+                        $('#privateKey').show();
+                        break;
+                    }
+                    case "Sign Transaction":{
+                        $('#privateKey').show();
+                        break;
+                    }
+                }
+            })
+            $('#node-input-rpc').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-entropy').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-account').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-privateKey').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-password').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-duration').typedInput({
+                type:"num",
+                types:["num"]
+            })
+        },
+        paletteLabel:"Accounts",
+        label: function(){
+            return this.name || this.function || "Accounts"
+        }
+    });
+</script>
+<script type="text/html" data-template-name="accounts">
+    <style>
+        .option{
+            display: none;
+        }
+        .option div{
+            min-width: 73%;
+        }
+    </style>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-function"><i class="fa fa-square"></i> Function</label>
+        <input type="text" id="node-input-function">
+    </div>
+    <div class="form-row">
+        <label for="node-input-rpc"><i class="fa fa-server"></i> RPC URL</label>
+        <input type="text" id="node-input-rpc">
+    </div>
+    <div class="form-row option" id="entropy">
+        <label for="node-input-entropy"><i class="fa fa-circle"></i> Entropy</label>
+        <input type="text" id="node-input-entropy">
+    </div>
+    <div class="form-row option" id="account">
+        <label for="node-input-account"><i class="fa fa-user"></i> Account</label>
+        <input type="text" id="node-input-account">
+    </div>
+    <div class="form-row option" id="privateKey">
+        <label for="node-input-privateKey"><i class="fa fa-key"></i> Private Key</label>
+        <input type="text" id="node-input-privateKey">
+    </div>
+    <div class="form-row option" id="password">
+        <label for="node-input-password"><i class="fa fa-key"></i> Password</label>
+        <input type="text" id="node-input-password">
+    </div>
+    <div class="form-row option" id="duration">
+        <label for="node-input-duration"><i class="fa fa-clock-o"></i> Duration</label>
+        <input type="text" id="node-input-duration">
+    </div>
+</script>
+<script type="text/html" data-help-name="accounts">
+    <p>Web3 Accounts Node-RED node.</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">string</span>
+    </dt>
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">string</span>
+    </dt>
+    <h3>Details</h3>
+    <p>Node for interacting with web3 accounts including creating, recovering, locking unlock accounts as well as signing data and recovering signers.</p>
+</script>
+
+<!-- CONTRACT NODE  -->
+<script type="text/javascript" id="node-contracts">
+    RED.nodes.registerType('contracts',{
+        category:'Web3Blue',
+        color:'#3FADB5',
+        inputs:1,
+        inputLabels: "contract request",
+        outputs:1,
+        outputLabels: "contract response",
+        icon:"contracts.svg",
+        defaults: {
+            name: {value:''},
+            function: {value:'Deploy Contract'},
+            rpc:{value:''},
+            abi:{value:[]},
+            bytecode:{value:''},
+            arguments:{value:[]},
+            account:{value:''},
+            password:{value:''},
+            contractAddress:{value:''},
+            contractFunction:{value:''},
+            contractArgs:{value:[]},
+            gasLimit:{value:''},
+            value:{value:''}
+        },
+        oneditprepare:()=>{
+            $("#node-input-function").typedInput({
+                type:"str",
+                types: [
+                    {
+                        options: [
+                            { value: "Deploy Contract"},
+                            { value: "Call to Contract"},
+                            { value: "Send to Contract"},
+                            { value: "Transaction with Contract"}
+                        ]
+                    }
+                ]
+            })
+             $('#node-input-function').change(()=>{
+                $('.option').hide();
+                $('#contract').hide();
+                switch($('#node-input-function').val()){
+                    case "Deploy Contract":{
+                        $('#abi').show();
+                        $('#bytecode').show();
+                        $('#arguments').show();
+                        break;
+                    }
+                    case "Call to Contract":{
+                        $('#abi').show();
+                        $('#contract').show();
+                        $('#contractAddress').show();
+                        $('#contractFunction').show();
+                        $('#contractArguments').show();
+                        $('#gasLimit').show();
+                        break;
+                    }
+                    case "Send to Contract":{
+                        $('#abi').show();
+                        $('#contract').show();
+                        $('#contractAddress').show();
+                        $('#contractFunction').show();
+                        $('#contractArguments').show();
+                        $('#gasLimit').show();
+                        break;
+                    }
+                    case "Transaction with Contract":{
+                        $('#abi').show();
+                        $('#contract').show();
+                        $('#contractAddress').show();
+                        $('#contractFunction').show();
+                        $('#contractArguments').show();
+                        $('#value').show();
+                        $('#gasLimit').show();
+                        break;
+                    }
+                }
+            })
+            $('#node-input-rpc').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-abi').typedInput({
+                type:"json",
+                value:[],
+                types:["json"]
+            })
+            $('#node-input-bytecode').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-account').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-arguments').typedInput({
+                type:"json",
+                types:["json"]
+            })
+            $('#node-input-contractAddress').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-contractFunction').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-contractArguments').typedInput({
+                type:"json",
+                types:["json"]
+            })
+            $('#node-input-gasLimit').typedInput({
+                type:"str",
+                types:["str"]
+            })
+            $('#node-input-value').typedInput({
+                type:"num",
+                types:["num"]
+            })
+        },
+        paletteLabel:"Smart Contracts",
+        label: function(){
+            return this.name || this.function || "Contracts"
+        }
+    });
+</script>
+<script type="text/html" data-template-name="contracts">
+    <style>
+        .option{
+            display: none;
+        }
+        .option div{
+            min-width: 73%;
+        }
+    </style>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-function"><i class="fa fa-square"></i> Function</label>
+        <input type="text" id="node-input-function">
+    </div>
+    <div class="form-row">
+        <label for="node-input-rpc"><i class="fa fa-server"></i> RPC URL</label>
+        <input type="text" id="node-input-rpc">
+    </div>
+    <div class="form-row">
+        <label for="node-input-account"><i class="fa fa-user"></i> Account</label>
+        <input type="text" id="node-input-account">
+    </div>
+    <div class="form-row option" id="abi">
+        <label for="node-input-abi"><i class="fa fa-gear"></i> ABI</label>
+        <input type="text" id="node-input-abi">
+    </div>
+    <div class="form-row option" id="bytecode">
+        <label for="node-input-bytecode"><i class="fa fa-gear"></i> Bytecode</label>
+        <input type="text" id="node-input-bytecode">
+    </div>
+    <div class="form-row option" id="arguments">
+        <label for="node-input-arguments"><i class="fa fa-gear"></i> Arguments</label>
+        <input type="text" id="node-input-arguments">
+    </div>
+    <div id="contract" style="border: 1px black;">
+        <hr>
+        <h3><i class="fa fa-stop-circle"></i> Contract Interface</h3>
+        <div class="form-row option" id="contractAddress">
+            <label for="node-input-contractAddress"><i class="fa fa-map"></i> Address</label>
+            <input type="text" id="node-input-contractAddress">
+        </div>
+        <div class="form-row option" id="contractFunction">
+            <label for="node-input-contractFunction"><i class="fa fa-square"></i> Function</label>
+            <input type="text" id="node-input-contractFunction">
+        </div>
+        <div class="form-row option" id="contractArguments">
+            <label for="node-input-contractArguments"><i class="fa fa-gear"></i> Arguments</label>
+            <input type="text" id="node-input-contractArguments">
+        </div>
+        <div class="form-row option" id="value">
+            <label for="node-input-value"><i class="fa fa-plus-circle"></i> Value</label>
+            <input type="text" id="node-input-value">
+        </div>
+        <div class="form-row option" id="gasLimit">
+            <label for="node-input-gasLimit"><i class="fa fa-th"></i> Gas Limit</label>
+            <input type="text" id="node-input-gasLimit">
+        </div>
+    </div>
+</script>
+<script type="text/html" data-help-name="contracts">
+    <p>Node-RED node for Web3 Smart Contracts.</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">string</span>
+    </dt>
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">string</span>
+    </dt>
+    <h3>Details</h3>
+    <p>Node for web3 smart contract deployment and interaction.</p>
+</script>
