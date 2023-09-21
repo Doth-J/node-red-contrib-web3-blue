@@ -197,7 +197,7 @@ export = function(RED:NodeRED.NodeAPI){
               const gasEstimation = await w3.eth.estimateGas({data:contract.deploy({data: options.bytecode,arguments: options.arguments}).encodeABI()});
               await contract.deploy({data: options.bytecode,arguments: options.arguments}).send({
                 from: options.account,
-                gas: gasEstimation*1.5,
+                gas: Math.floor(gasEstimation*1.5),
                 gasPrice: await w3.eth.getGasPrice()
               }).then((instance)=>msg.payload = instance.options)
               .catch((e:Error)=>msg.payload = e.message);
